@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Image previews</title>
+    <style>
+      section {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body style="font-family: sans-serif;">
+    <noscript>
+      <strong>niivue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+
+    <section>
+      <h1>
+        Cortico-spinal Tract
+      </h1>
+    </section>
+
+    <section>
+      <div id="demo1" style="width:90%; height:400px;">
+        <canvas id="gl1" height=480 width=640>
+        </canvas>
+      </div>
+    </section>
+    <script src="https://unpkg.com/@niivue/niivue@0.24.2/dist/niivue.umd.js"></script>
+    <script>
+     var volumeList1 = [
+       // first item is background image
+       {
+         url: "./mni152.nii.gz",
+         colorMap: "gray",
+       },
+       {
+         url: "./Index2.nii.gz",
+         colorMap: 'violet',
+         opacity: 0.6
+       }
+      ] 
+      var nv1 = new niivue.Niivue()
+      nv1.setRadiologicalConvention(false)
+      nv1.attachTo('gl1')
+      nv1.loadVolumes(volumeList1)
+      nv1.setSliceType(nv1.sliceTypeMultiplanar)
+    </script>
+  </body>
+</html>
